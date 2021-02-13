@@ -24,3 +24,29 @@ Because it is such a large dataset, we first wanted to examine the integrity of 
  Immunization rate is an important metric of global health. Figure 2, below, plots the average immunization rates observed in the time period 1960-2015 per counties selected on equally spaced intervals across the distribution. The left-hand panel includes those countries having missing data, whereas the right-hand panel excludes them. Importantly, the both distributions share a common shape, suggesting that GLOBAL (not per country) rates of immunization are reasonably represented using either approach.
  
 ![alt test](figures/f2.immunizationspercountry.png)
+
+<details><code>
+    # Immunizations Averaged Across Time Per Country, by AS
+    immunization_groupby = health[health['Indicator Name'].str.contains("Immunization")].groupby(by= ['Country Name'])
+    immunization_groupby_mean = immunization_groupby.mean()
+    per_country_rate = immunization_groupby_mean.transpose().mean(numeric_only=True).sort_values(na_position="first")
+    per_country_rate_subset = per_country_rate[::10]
+    per_country_rate_dropnan = per_country_rate.dropna()[::10]
+    fig2, ax2 = plt.subplots(1,2,figsize=(10,10))
+    fig2.suptitle("Immunizations Averaged Across Time Per Country\n(1960-2015)", fontsize=18)
+    fig2.text(0.5, .04, 'Immunization Rate', ha='center')
+    ax2[0].barh(per_country_rate_subset.index, per_country_rate_subset)
+    ax2[0].set_yticks(per_country_rate_subset.index)
+    ax2[0].set_title('Including\nMissing Data', fontsize=12)
+    ax2[1].set_yticklabels([])
+    ax2[1].set_yticks([])
+    ax3 = ax2[1].twinx()
+    ax3.barh(per_country_rate_dropnan.index, per_country_rate_dropnan, align='center')
+    ax2[1].set_title('Excluding\nMissing Data', fontsize=12)
+    ax3.set_yticks(per_country_rate_dropnan.index)
+    ax3.set_yticklabels(per_country_rate_dropnan.index)
+    ax3.invert_xaxis()
+    #plt.tight_layout()
+    plt.show()
+    fig2.savefig('figures/f2.immunizationspercountry.png', bbox_inches = "tight")
+</code></details>
