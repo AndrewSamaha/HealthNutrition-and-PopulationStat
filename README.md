@@ -20,3 +20,7 @@ Because it is such a large dataset, we first wanted to examine the integrity of 
     plt.show()
     fig.savefig('figures/f1.usefuldatapointsbyyear.png')
     </code></details>
+    
+ Immunization rate is an important metric of global health. Figure 2, below, plots the average immunization rates observed in the time period 1960-2015 per counties selected on equally spaced intervals across the distribution. The left-hand panel includes those countries having missing data, whereas the right-hand panel excludes them. Importantly, the both distributions share a common shape, suggesting that GLOBAL (not per country) rates of immunization are reasonably represented using either approach.
+ 
+![alt test](figures/f2.immunizationspercountry.png)
