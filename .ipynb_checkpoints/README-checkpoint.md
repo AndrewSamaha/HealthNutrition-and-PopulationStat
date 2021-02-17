@@ -1,4 +1,4 @@
-# Our First Case Study
+# State of Human Health Across the Wrold Case Study
 For our dataset, we chose to examine data compiled by the World Bank on indicators, such as immunization rates, malnutrition prevalence, and vitamin A supplementation rates across 263 countries around the world. The available data spans 345 indicators collected from 1960-2016.
 
 Because it is such a large dataset, we first wanted to examine the integrity of the data by year. We suspected that the dataset would be more complete in more recent years. Figure 1, below, shows the number of useful (non-null) data points for each year. It shows that, indeed, the dataset grew more complete across time.
@@ -21,9 +21,13 @@ Because it is such a large dataset, we first wanted to examine the integrity of 
     fig.savefig('figures/f1.usefuldatapointsbyyear.png')
     </code></details>
     
+ # Section 1. Immunization Rate Analysis
+
  Immunization rate is an important metric of global health. Figure 2, below, plots the average immunization rates observed in the time period 1960-2015 per counties selected on equally spaced intervals across the distribution. The left-hand panel includes those countries having missing data, whereas the right-hand panel excludes them. Importantly, the both distributions share a common shape, suggesting that GLOBAL (not per country) rates of immunization are reasonably represented using either approach.
  
 ![alt test](figures/f2.immunizationspercountry.png)
+
+
 <details><code>
     # Immunizations Averaged Across Time Per Country, by AS 
     immunization_groupby = health[health['Indicator Name'].str.contains("Immunization")].groupby(by= ['Country Name']) 
@@ -48,3 +52,28 @@ Because it is such a large dataset, we first wanted to examine the integrity of 
     plt.show() 
     fig2.savefig('figures/f2.immunizationspercountry.png', bbox_inches = "tight")
 </code></details>
+
+## Section 2. Immunization Trend 
+
+The word has seen much progress since vaccine immunization was a fresh topic back in the late 1970s. The rate shot up quickly to roughly 60% and continue to show a steep increase til 1990s. Since then, overall immunization has slowly shown improvement to reach ~80%. 
+
+The list of immunization analyzed are as follows:
+* 'Immunization, BCG (% of one-year-old children)',
+* 'Immunization, DPT (% of children ages 12-23 months)',
+* 'Immunization, HepB3 (% of one-year-old children)',
+* 'Immunization, Hib3 (% of children ages 12-23 months)',
+* 'Immunization, measles (% of children ages 12-23 months)',
+* 'Immunization, Pol3 (% of one-year-old children)'
+
+![Immunization Trend]('figures/f3.immunization.png')
+
+![Immunization Breakdown]('figures/f4.immunization2.png')
+
+![Immunization Breakdown]('figures/f5.immunization3.png')
+
+![Immunization Breakdown]('figures/f5.immunization3.png')
+
+## Section 3. Condom Use and Rate of Children Born with HIV
+
+![Immunization Breakdown]('figures/f6.immunization4.png')
+
